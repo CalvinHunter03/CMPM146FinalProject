@@ -1,3 +1,4 @@
+from Player import Player
 weapons = [
     {
         "name": "Sword",
@@ -45,5 +46,8 @@ def choose_weapon():
 
     return weapon_choice
         
-print(choose_weapon())
 
+
+playerOne = Player(weapons[choose_weapon() - 1].get("name"))
+
+print(playerOne.weapon)
