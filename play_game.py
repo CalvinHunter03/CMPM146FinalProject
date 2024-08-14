@@ -18,21 +18,22 @@ while(1):
         round_over = False
         turn = 0
         while round_over == False:
-        
+            game.clear_console()
             # Player's turn
-            print("Your turn")
+            # print("Your turn")
 
             ##########################
             # Input player turn here #
             ##########################
 
-            print(f"{game.enemy.name}'s turn")
+            # print(f"{game.enemy.name}'s turn")
 
             ############################
             # Generate enemy turn here #
             ############################
             
             turn += 1 
+            game.display_game(player)
         game.check_end()
 
     # # just commenting this out for now as I don't know where to put it

@@ -1,38 +1,15 @@
-from Game import Game
+from Globals import weapons
+#from moves import moves
 class Player():
     
     def __init__(self):
-        self.weapon = Game.weapons[self.choose_weapon() - 1].get("name")
+        self.weapon = weapons[self.choose_weapon() - 1] #.get("name")# # For now, lets make the weapon variable the weapon dictionary
+        #self.weapon = weapons[self.choose_weapon() - 1].get("name")  # If we really need a variable for just the name, we can use this
         self.health = 100
         self.position = 10
         self.is_blocking = False
         self.potions = 3
         
-
-    
-    def move_towards(self):
-        new_distance = self.position + 5
-        if new_distance > 50:
-            new_distance = 50
-        elif new_distance < 0:
-            new_distance = 0
-        self.position = new_distance
-        
-    def move_away(self):
-        new_distance = self.position - 5
-        if new_distance > 50:
-            new_distance = 50
-        elif new_distance < 0:
-            new_distance = 0
-        self.position = new_distance
-
-    def heal(self):
-        current_health = self.health 
-        heal_amount = current_health // 2
-        self.health += heal_amount
-        
-        if self.health > 100:
-            self.health = 100
     
     
 
@@ -44,26 +21,27 @@ class Player():
     def display_legal_player_moves(self): #return a list of legal moves with certain weapon
         legal_moves = []
 
-        for weapon in Game.weapons:
+        for weapon in weapons:
             if self.weapon == weapon.get("name"):
-                legal_moves.append(weapon.get("action"))
-                legal_moves.append(weapon.get("action2"))
+                for action in weapon.get("action"):
+                    legal_moves.append(action[0])
+                    legal_moves.append(action[1])
             legal_moves.append("Move toward enemy")
             legal_moves.append("Move away from enemy")
             legal_moves.append("Use potion to heal")
 
         for move in legal_moves:
             x = 1
-            printf('{x}) {move}\n')
+            print(f'{x}) {move}\n')
             x+=1
 
     
 
 
-    def choose_weapon():
+    def choose_weapon(self):
             x = 1
             print(f'Choose your weapon!\n')
-            for weapon in Game.weapons:
+            for weapon in weapons:
                 print(f'{x}){weapon.get("name")}\n -Damage: {weapon.get("damage")}\n -Range: {weapon.get("range")}')
                 x += 1
             
@@ -77,4 +55,9 @@ class Player():
 
 
 
+def main():
+    p1 = Player()
+    p1.display_legal_player_moves
 
+if __name__ == '__main__':
+    main()

@@ -1,11 +1,12 @@
 import random
+import moves
 
 class Enemy():
     def __init__(self, weapon):
         self.weapon = weapon
         self.health = 100
         self.position = 40
-        self.name # i have an idea for this 
+        self.name = "" # i have an idea for this 
         self.is_blocking = False
 
     def generate_name(self):
@@ -19,7 +20,7 @@ class Enemy():
             "Aulus",
             "Decimus",
             "Quintus",
-            "Sextus",
+            "Setus",
             "Julia",
             "Claudia",
             "Livia",
@@ -54,7 +55,7 @@ class Enemy():
             "the Magnificent"
         ]
 
-        self.name = random.choice(names) + random.choice(titles)
+        self.name = random.choice(names) + " " + random.choice(titles)
 
 
     
